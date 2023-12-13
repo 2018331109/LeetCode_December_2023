@@ -1,0 +1,53 @@
+1582. Special Positions in a Binary Matrix
+
+STATEMENT
+Given an m x n binary matrix mat, return the number of special positions in mat.
+A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and 
+column j are 0 (rows and columns are 0-indexed).
+
+SUBMISSION
+C++
+class Solution {
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+         
+        int n=mat.size(), m=mat[0].size();
+        vector<int>r(n), c(m);
+
+        for(int i=0;i<n;i++)
+        {
+            int total=0;
+            for(int j=0;j<m;j++)
+            {
+                total+=mat[i][j];
+            }
+            r[i]=total;
+        }
+        for(int j=0;j<m;j++)
+        {
+            int total=0;
+            for(int i=0;i<n;i++)
+            {
+                total+=mat[i][j];
+            }
+            c[j]=total;
+        }
+        
+        int cnt=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(mat[i][j]==1)
+                {
+                    if(r[i]+c[j]==2)
+                    {
+                        cnt++;
+                    }
+                }
+            }
+        }
+
+        return cnt;
+    }
+};
