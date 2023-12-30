@@ -1,0 +1,33 @@
+1897. Redistribute Characters to Make All Strings Equal
+
+STATEMENT
+You are given an array of strings words (0-indexed).
+In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and move any character from words[i] to any position in words[j].
+Return true if you can make every string in words equal using any number of operations, and false otherwise.
+
+SUBMISSION
+C++
+class Solution
+{
+public:
+    bool makeEqual(vector<string>& v)
+    {
+        int n=v.size();
+        unordered_map<char, int>mp;
+        for(string s:v)
+        {
+            for(char it:s)
+            {
+                mp[it]++;
+            }
+        }
+        for(auto it:mp)
+        {
+            if(it.second%n)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
