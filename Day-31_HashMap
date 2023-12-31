@@ -1,0 +1,29 @@
+1624. Largest Substring Between Two Equal Characters
+
+STATEMENT
+Given a string s, return the length of the longest substring between two equal characters, 
+excluding the two characters. If there is no such substring return -1.
+A substring is a contiguous sequence of characters within a string.
+
+SUBMISSION
+C++
+class Solution {
+public:
+    int maxLengthBetweenEqualCharacters(string s) {
+        map<char, int>mp;
+        int ans=-1;
+        for(int i=0;i<s.size();i++)
+        {
+            if(mp[s[i]] == 0)
+            {
+                mp[s[i]]=i+1;
+            }
+            else
+            {
+                ans=max(ans, i-mp[s[i]]);
+            }
+        }
+        return ans;
+        
+    }
+};
